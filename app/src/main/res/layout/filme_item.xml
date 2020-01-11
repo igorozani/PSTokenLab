@@ -18,6 +18,12 @@
             android:layout_height="wrap_content"
             android:textSize="30dp"
             tools:text="Titulo" />
+        
+        <ImageView
+            android:id="@+id/filme_item_poster"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"/>
 
 
 
