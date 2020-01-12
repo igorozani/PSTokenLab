@@ -16,33 +16,47 @@ class ListaDeFilmesActivity: AppCompatActivity () {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_de_filmes)
 
-        val call = RetrofitInitializer().createFilmesService().list()
-        call.enqueue(object : Callback<List<Filme>?> {
-            override fun onResponse(call: Call<List<Filme>?>?, response: Response<List<Filme>?>?) {
+        val call = RetrofitInitializer().createFilmesService().pegaLista()
+        call.enqueue(object : Callback<List<ListaDeFilmes>?> {
+            override fun onResponse(call: Call<List<ListaDeFilmes>?>?, response: Response<List<ListaDeFilmes>?>?) {
                 configuraLista(response!!.body()!!)
             }
 
             override fun onFailure(
-                call: Call<List<Filme>?>?,
+                call: Call<List<ListaDeFilmes>?>?,
                 t: Throwable?
             ) {
                 Log.e("onFailure error", t?.message)
             }
         })
-
-
     }
 
-    private fun configuraLista(filmes: List<Filme>) {
+    private fun configuraLista(filmes: List<ListaDeFilmes>) {
         val adapter = ListaDeFilmesAdapter(filmes, this)
         adapter.configuraClique {
-            val detalhesFilme = Intent (this, DetalhesFilme::class.java)
-            detalhesFilme.putExtra("filme", it as Serializable)
-            startActivity(detalhesFilme)
+            val call = RetrofitInitializer().createFilmesService().pegaFilme(it.id)
+            call.enqueue(object : Callback<Filme?> {
+                override fun onResponse(call: Call<Filme?>?, response: Response<Filme?>?) {
+                    configuraFilme(response!!.body())
+                }
+
+                private fun configuraFilme(filme: Filme?) {
+                    val detalhesFilme = Intent (this@ListaDeFilmesActivity, DetalhesFilme::class.java)
+                    detalhesFilme.putExtra("filme", filme as Serializable)
+                    startActivity(detalhesFilme)
+                }
+
+                override fun onFailure(
+                    call: Call<Filme?>?,
+                    t: Throwable?
+                ) {
+                    Log.e("onFailure error", t?.message)
+                }
+            })
         }
         lista_de_filmes_recyclerview.adapter = adapter
         lista_de_filmes_recyclerview.layoutManager = LinearLayoutManager(this)
         }
-    }
+}
 
 

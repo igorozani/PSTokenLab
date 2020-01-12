@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/filme_poster"
-                android:layout_width="130dp"
-                android:layout_height="194dp"
+                android:layout_width="409dp"
+                android:layout_height="230dp"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
