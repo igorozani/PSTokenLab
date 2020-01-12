@@ -1,5 +1,6 @@
 package com.example.pstokenlab
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_lista_de_filmes.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Serializable
 
 class ListaDeFilmesActivity: AppCompatActivity () {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +34,15 @@ class ListaDeFilmesActivity: AppCompatActivity () {
     }
 
     private fun configuraLista(filmes: List<Filme>) {
-        lista_de_filmes_recyclerview.apply {
-            layoutManager = LinearLayoutManager(this@ListaDeFilmesActivity)
-            adapter = ListaDeFilmesAdapter(filmes, this@ListaDeFilmesActivity)
+        val adapter = ListaDeFilmesAdapter(filmes, this)
+        adapter.configuraClique {
+            val detalhesFilme = Intent (this, DetalhesFilme::class.java)
+            detalhesFilme.putExtra("filme", it as Serializable)
+            startActivity(detalhesFilme)
+        }
+        lista_de_filmes_recyclerview.adapter = adapter
+        lista_de_filmes_recyclerview.layoutManager = LinearLayoutManager(this)
         }
     }
-}
 
 

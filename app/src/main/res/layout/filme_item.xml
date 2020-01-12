@@ -6,27 +6,34 @@
     android:layout_margin="5dp"
     android:maxHeight="250dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:layout_height="88sp"
+        android:orientation="vertical"
+        android:background="@color/light_black">
+
+
+        <ImageView
+            android:id="@+id/filme_item_poster"
+            android:layout_width="52sp"
+            android:layout_height="72sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginBottom="8sp"
+            android:layout_marginLeft="16dp"/>
 
         <TextView
             android:id="@+id/filme_item_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            tools:text="Titulo" />
-        
-        <ImageView
-            android:id="@+id/filme_item_poster"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"/>
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="88dp"
+            tools:text="Titulo"
+            android:textColor="@color/white"/>
 
 
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
