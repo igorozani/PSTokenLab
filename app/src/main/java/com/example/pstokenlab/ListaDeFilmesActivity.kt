@@ -3,9 +3,12 @@ package com.example.pstokenlab
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_lista_de_filmes.*
+import kotlinx.android.synthetic.main.progress_bar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,9 +19,12 @@ class ListaDeFilmesActivity: AppCompatActivity () {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_de_filmes)
 
+        pbLoading.visibility = ProgressBar.VISIBLE
+
         val call = RetrofitInitializer().createFilmesService().pegaLista()
         call.enqueue(object : Callback<List<ListaDeFilmes>?> {
             override fun onResponse(call: Call<List<ListaDeFilmes>?>?, response: Response<List<ListaDeFilmes>?>?) {
+                pbLoading.visibility = ProgressBar.INVISIBLE
                 configuraLista(response!!.body()!!)
             }
 
@@ -26,7 +32,8 @@ class ListaDeFilmesActivity: AppCompatActivity () {
                 call: Call<List<ListaDeFilmes>?>?,
                 t: Throwable?
             ) {
-                Log.e("onFailure error", t?.message)
+                pbLoading.visibility = ProgressBar.INVISIBLE
+                Toast.makeText(this@ListaDeFilmesActivity,"Falha. Tente novamente mais tarde.", Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -34,9 +41,11 @@ class ListaDeFilmesActivity: AppCompatActivity () {
     private fun configuraLista(filmes: List<ListaDeFilmes>) {
         val adapter = ListaDeFilmesAdapter(filmes, this)
         adapter.configuraClique {
+            pbLoading.visibility = ProgressBar.VISIBLE
             val call = RetrofitInitializer().createFilmesService().pegaFilme(it.id)
             call.enqueue(object : Callback<Filme?> {
                 override fun onResponse(call: Call<Filme?>?, response: Response<Filme?>?) {
+                    pbLoading.visibility = ProgressBar.INVISIBLE
                     configuraFilme(response!!.body())
                 }
 
@@ -50,7 +59,8 @@ class ListaDeFilmesActivity: AppCompatActivity () {
                     call: Call<Filme?>?,
                     t: Throwable?
                 ) {
-                    Log.e("onFailure error", t?.message)
+                    pbLoading.visibility = ProgressBar.INVISIBLE
+                    Toast.makeText(this@ListaDeFilmesActivity,"Falha. Tente novamente mais tarde.", Toast.LENGTH_LONG).show()
                 }
             })
         }
