@@ -36,31 +36,50 @@
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
                 android:text="Title"
-                android:textColor="@color/white"
+                android:textColor="@color/shadow"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="20dp"/>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="24dp"
+                android:orientation="horizontal">
 
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:layout_marginLeft="16dp"
+                    android:rating="0.5"
+                    android:stepSize="0.1"
+                    style="?android:ratingBarStyleSmall"/>
                 <TextView
                     android:id="@+id/vote_average"
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:textSize="12dp"
                     android:text="9.9"
                     android:textColor="@color/green"
-                    android:layout_marginLeft="16dp"/>
+                    android:layout_marginLeft="8sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:textSize="12dp"
-                    android:text="rating"
+                    android:text="Match"
                     android:textColor="@color/green"
-                    android:layout_marginLeft="36dp"/>
+                    android:layout_marginLeft="3sp"/>
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="2000"
+                    android:textColor="@color/shadow"
+                    android:layout_marginLeft="8sp"/>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -68,50 +87,82 @@
                 android:layout_marginTop="8dp">
 
                 <TextView
-                    android:id="@+id/release_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:textSize="12dp"
-                    android:text="2000"
-                    android:layout_marginLeft="88dp"
-                    android:textColor="@color/white"/>
-
-                <TextView
+                    android:id="@+id/overview"
                     android:layout_width="match_parent"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:textSize="12dp"
-                    android:text="Lançamento:"
+                    android:text="Release:"
                     android:layout_marginLeft="16dp"
-                    android:textColor="@color/white"/>
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/shadow"/>
 
             </RelativeLayout>
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content">-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginTop="6dp">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/genres"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="24dp"-->
-<!--                    android:textSize="12dp"-->
-<!--                    android:text="Drama"-->
-<!--                    android:layout_marginLeft="65dp"/>-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="24dp"-->
-<!--                    android:textSize="12dp"-->
-<!--                    android:text="Gêneros:"-->
-<!--                    android:layout_marginLeft="16dp"/>-->
-
-<!--            </RelativeLayout>-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal">
 
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="Genres:"
+                        android:textColor="#a6a6a6"/>
+
+                    <TextView
+                        android:id="@+id/genres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="Drama"
+                        android:layout_marginLeft="3dp"
+                        android:textColor="#a6a6a6" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Runtime:"
+                    android:textColor="#a6a6a6"/>
+
+                <TextView
+                    android:id="@+id/runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="207 min"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#a6a6a6" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
-
 </ScrollView>
+

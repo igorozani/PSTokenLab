@@ -12,17 +12,19 @@ class DetalhesFilme: AppCompatActivity() {
 
         val filme: Filme = intent.getSerializableExtra("filme") as Filme
 
-        carregaDadosReserva(filme)
+        carregaDadosFilme(filme)
     }
 
-    private fun carregaDadosReserva(filme: Filme) {
+    private fun carregaDadosFilme(filme: Filme) {
         Picasso.with(this).load(filme.backdrop_url).fit().into(filme_poster)
         movie_title.text = filme.title
-        vote_average.text = filme.vote_average
+        val vote = (filme.vote_average!!*10).toInt()
+        vote_average.text = vote.toString() + "%"
         release_date.text = filme.release_date!!.subSequence(0,4)
-
-
-
-
+        ratingBar.rating = filme.vote_average!! / 2
+        overview.text = filme.overview
+        val genero: String = filme.genres.toString()
+        genres.text = genero.subSequence(1,genero.lastIndex)
+        runtime.text = filme.runtime + " min"
     }
 }

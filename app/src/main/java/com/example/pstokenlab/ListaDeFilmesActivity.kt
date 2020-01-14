@@ -2,13 +2,12 @@ package com.example.pstokenlab
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_lista_de_filmes.*
-import kotlinx.android.synthetic.main.progress_bar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,24 +20,60 @@ class ListaDeFilmesActivity: AppCompatActivity () {
 
         pbLoading.visibility = ProgressBar.VISIBLE
 
+        Paper.init(this)
+        var filmes: List<ListaDeFilmes>?
+
         val call = RetrofitInitializer().createFilmesService().pegaLista()
         call.enqueue(object : Callback<List<ListaDeFilmes>?> {
             override fun onResponse(call: Call<List<ListaDeFilmes>?>?, response: Response<List<ListaDeFilmes>?>?) {
-                pbLoading.visibility = ProgressBar.INVISIBLE
-                configuraLista(response!!.body()!!)
+                filmes = response!!.body()
+                if (filmes != null) {
+                    Paper.book().write("ListaDeFilmes", filmes)
+                    pbLoading.visibility = ProgressBar.INVISIBLE
+                    mostraLista(filmes!!)
+                } else {
+                    filmes = Paper.book().read("ListaDeFilmes")
+                    if (filmes != null){
+                        Toast.makeText(this@ListaDeFilmesActivity,
+                            "Falha ao carregar. Os dados podem estar desatualizados.",
+                            Toast.LENGTH_LONG)
+                            .show()
+                        pbLoading.visibility = ProgressBar.INVISIBLE
+                        mostraLista(filmes!!)
+                    } else {
+                        pbLoading.visibility = ProgressBar.INVISIBLE
+                        Toast.makeText(this@ListaDeFilmesActivity,
+                            "Falha ao carregar. Verifique a conexão",
+                            Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
             }
 
             override fun onFailure(
                 call: Call<List<ListaDeFilmes>?>?,
                 t: Throwable?
             ) {
-                pbLoading.visibility = ProgressBar.INVISIBLE
-                Toast.makeText(this@ListaDeFilmesActivity,"Falha. Tente novamente mais tarde.", Toast.LENGTH_LONG).show()
+                filmes = Paper.book().read("ListaDeFilmes")
+                if (filmes != null){
+                    Toast.makeText(this@ListaDeFilmesActivity,
+                        "Falha ao carregar. Os dados podem estar desatualizados.",
+                        Toast.LENGTH_LONG)
+                        .show()
+                    pbLoading.visibility = ProgressBar.INVISIBLE
+                    mostraLista(filmes!!)
+                } else {
+                    pbLoading.visibility = ProgressBar.INVISIBLE
+                    Toast.makeText(this@ListaDeFilmesActivity,
+                        "Falha ao carregar. Verifique a conexão.",
+                        Toast.LENGTH_LONG)
+                        .show()
+                }
             }
         })
     }
 
-    private fun configuraLista(filmes: List<ListaDeFilmes>) {
+    private fun mostraLista(filmes: List<ListaDeFilmes>) {
         val adapter = ListaDeFilmesAdapter(filmes, this)
         adapter.configuraClique {
             pbLoading.visibility = ProgressBar.VISIBLE
@@ -60,7 +95,7 @@ class ListaDeFilmesActivity: AppCompatActivity () {
                     t: Throwable?
                 ) {
                     pbLoading.visibility = ProgressBar.INVISIBLE
-                    Toast.makeText(this@ListaDeFilmesActivity,"Falha. Tente novamente mais tarde.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@ListaDeFilmesActivity,"Falha ao carregar. Verifique a conexão.", Toast.LENGTH_LONG).show()
                 }
             })
         }
