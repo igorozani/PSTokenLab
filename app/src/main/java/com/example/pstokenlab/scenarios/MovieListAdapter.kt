@@ -1,17 +1,19 @@
-package com.example.pstokenlab
+package com.example.pstokenlab.scenarios
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pstokenlab.R
+import com.example.pstokenlab.entities.MovieList
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.filme_item.view.*
 
-class ListaDeFilmesAdapter (private val filmes: List<ListaDeFilmes>,
-                            private val context: Context) : RecyclerView.Adapter<ListaDeFilmesAdapter.ViewHolder>() {
+class MovieListAdapter (private val filmes: List<MovieList>,
+                        private val context: Context) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-    var clique: ((filme: ListaDeFilmes) -> Unit)? = null
+    var clique: ((filme: MovieList) -> Unit)? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val filme = filmes[position]
@@ -29,12 +31,12 @@ class ListaDeFilmesAdapter (private val filmes: List<ListaDeFilmes>,
         return filmes.size
     }
 
-    fun configuraClique(clique: ((filme: ListaDeFilmes) -> Unit)) {
+    fun configuraClique(clique: ((filme: MovieList) -> Unit)) {
         this.clique = clique
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(filme: ListaDeFilmes, context: Context, clique: ((filme: ListaDeFilmes) -> Unit)?) {
+        fun bindView(filme: MovieList, context: Context, clique: ((filme: MovieList) -> Unit)?) {
             itemView.filme_item_titulo.text = filme.title
             Picasso.with(context).load(filme.poster_url).fit().into(itemView.filme_item_poster)
             if (clique != null) {
