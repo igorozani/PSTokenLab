@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pstokenlab.R
 import com.example.pstokenlab.entities.MovieList
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.filme_item.view.*
+import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieListAdapter (private val filmes: List<MovieList>,
                         private val context: Context) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
@@ -23,7 +23,7 @@ class MovieListAdapter (private val filmes: List<MovieList>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.filme_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.movie_item, parent, false)
         return ViewHolder(view)
     }
 

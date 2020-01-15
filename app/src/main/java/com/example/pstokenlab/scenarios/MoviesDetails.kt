@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.pstokenlab.R
 import com.example.pstokenlab.entities.Movie
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_detalhes_filme.*
+import kotlinx.android.synthetic.main.activity_movie_details.*
 
 class MoviesDetails: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detalhes_filme)
+        setContentView(R.layout.activity_movie_details)
 
         val movie: Movie = intent.getSerializableExtra("Movie") as Movie
 

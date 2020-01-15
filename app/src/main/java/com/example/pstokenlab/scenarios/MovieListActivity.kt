@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pstokenlab.R
 import com.example.pstokenlab.entities.Movie
 import com.example.pstokenlab.entities.MovieList
-import kotlinx.android.synthetic.main.activity_lista_de_filmes.*
+import kotlinx.android.synthetic.main.activity_movie_list.*
 import java.io.Serializable
 
 class MovieListActivity: AppCompatActivity (), MovieListContract.View {
@@ -18,7 +18,7 @@ class MovieListActivity: AppCompatActivity (), MovieListContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista_de_filmes)
+        setContentView(R.layout.activity_movie_list)
 
         presenter.onLoadList(this)
 
