@@ -76,7 +76,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="60" />
+                                                <entry key="scalingPercent" value="140" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -89,7 +89,7 @@
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="000000" />
                                       <entry key="foregroundImage" value="C:\Users\Igor Rozani\Desktop\logo.PNG" />
-                                      <entry key="outputName" value="logo" />
+                                      <entry key="outputName" value="logo2" />
                                     </map>
                                   </option>
                                 </PersistentState>
