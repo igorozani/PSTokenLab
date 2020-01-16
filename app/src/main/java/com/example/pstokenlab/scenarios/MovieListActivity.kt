@@ -39,16 +39,16 @@ class MovieListActivity: AppCompatActivity (), MovieListContract.View {
         adapter.configuraClique {
             presenter.onLoadMovie(it)
         }
-        lista_de_filmes_recyclerview.adapter = adapter
-        lista_de_filmes_recyclerview.layoutManager = LinearLayoutManager(this)
+        rv_movie_list.adapter = adapter
+        rv_movie_list.layoutManager = LinearLayoutManager(this)
         }
 
     override fun showLoading() {
-        pbLoading.visibility = ProgressBar.VISIBLE
+        pb_loading.visibility = ProgressBar.VISIBLE
     }
 
     override fun hideLoading() {
-        pbLoading.visibility = ProgressBar.INVISIBLE
+        pb_loading.visibility = ProgressBar.INVISIBLE
     }
 }
 
