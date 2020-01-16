@@ -1,6 +1,6 @@
 # PSTokenLab
 
-Código para a solução do desafio técnico do processo seletivo para estagiário em mobile.
+Código para a solução do desafio técnico do processo seletivo para estagiário em mobile. Desenvolvido por Igor José Lima Rozani.
 
 ## Descrição do Desafio
 
@@ -31,5 +31,3 @@ O desafio consiste em elaborar um aplicativo (Android ou iOS) que obtenha os dad
 
 * https://medium.com/collabcode/consumindo-api-rest-no-android-com-retrofit-em-kotlin-parte-1-5e752ab8a877
 * https://medium.com/@crossphd/android-image-loading-from-a-string-url-6c8290b82c5e
-* https://drive.google.com/drive/folders/1g7NJoITL5NZJ9vuVZdmLMaoJRYFKtdQU?fbclid=IwAR1BH8OeYbG4ByGjqLCpiHqan_SKoVPYNuY8EO6KO1-1T39Y6FNpIsAIaT8
-* https://drive.google.com/drive/folders/1l8SLCX5INqa2gaBkE7NIBmW6w1jXcNzf?fbclid=IwAR1BH8OeYbG4ByGjqLCpiHqan_SKoVPYNuY8EO6KO1-1T39Y6FNpIsAIaT8
