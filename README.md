@@ -10,15 +10,15 @@ O desafio consiste em elaborar um aplicativo (Android ou iOS) que obtenha os dad
 
 ## Características do aplicativo
 
-* Projeto desenvolvido com Kotlin para Android.
+* Projeto Android desenvolvido com Kotlin.
 * Mantém o usúario informado de que a aplicação está baixando/processando os dados através de uma Progress Bar.
 * Utiliza o padrão de projeto MVP.
-* Realiza o tratamento de erros, informa ao usuário que os dados não puderam ser atualizados quando está sem conexão ou não obteve a esperada da API
-* Realiza armazenamento local dos dados após ter realizado o download das informações da API, para serem exibidos quando não houver conexão 
+* Realiza o tratamento de erros, informando ao usuário que os dados não puderam ser atualizados quando não há conexão ou não obteve a resposta esperada da API.
+* Realiza armazenamento local dos dados após ter realizado o download das informações da API, para serem exibidos quando não houver conexão. 
 
 ## Bibliotecas
 
-* Retrofit2 - Realiza as requisições para a API (REST)
+* Retrofit2 - Realiza as requisições para a API REST
 * Picasso (Square) - Realiza download e cache de imagens
 * Paper db - Armazenamento de dados
 
