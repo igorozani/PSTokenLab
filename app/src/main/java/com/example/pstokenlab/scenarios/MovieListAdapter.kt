@@ -18,7 +18,7 @@ class MovieListAdapter (private val filmes: List<MovieList>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val filme = filmes[position]
         holder.let {
-            it.bindView(filme, context, clique)
+            it.bindView(filme, clique)
         }
     }
 
@@ -36,9 +36,9 @@ class MovieListAdapter (private val filmes: List<MovieList>,
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(filme: MovieList, context: Context, clique: ((filme: MovieList) -> Unit)?) {
+        fun bindView(filme: MovieList, clique: ((filme: MovieList) -> Unit)?) {
             itemView.filme_item_titulo.text = filme.title
-            Picasso.with(context).load(filme.poster_url).fit().into(itemView.filme_item_poster)
+            Picasso.get().load(filme.poster_url).fit().into(itemView.filme_item_poster)
             if (clique != null) {
                 itemView.setOnClickListener {
                     clique.invoke(filme)

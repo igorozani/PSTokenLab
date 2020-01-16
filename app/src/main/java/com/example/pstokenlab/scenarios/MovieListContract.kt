@@ -12,10 +12,12 @@ interface MovieListContract {
         fun showList(movies: List<MovieList>)
         fun showMovie(movie: Movie)
         fun showMessage(msg: String)
+        fun refreshList()
+        fun hideRefreshLoading()
     }
 
     interface Presenter{
-        fun onLoadList(context: Context)
+        fun onLoadList(context: Context, alreadyRefresh: Boolean)
         fun onLoadMovie(movieList: MovieList)
     }
 

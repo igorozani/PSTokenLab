@@ -18,7 +18,7 @@ class MoviesDetails: AppCompatActivity() {
     }
 
     private fun carregaDadosFilme(movie: Movie) {
-        Picasso.with(this).load(movie.backdrop_url).fit().into(filme_poster)
+        Picasso.get().load(movie.backdrop_url).fit().into(filme_poster)
         movie_title.text = movie.title
         val vote = (movie.vote_average!!*10).toInt()
         vote_average.text = vote.toString() + "%"

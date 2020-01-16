@@ -11,8 +11,16 @@ import retrofit2.Response
 
 class MovieListPresenter (val view: MovieListContract.View): MovieListContract.Presenter {
 
-    override fun onLoadList(context: Context){
-        view.showLoading()
+    override fun onLoadList(context: Context, alreadyRefresh: Boolean){
+
+        var neverRefresh = true
+
+        if (alreadyRefresh) {
+            neverRefresh = false
+        } else {
+            view.showLoading()
+        }
+
 
         Paper.init(context)
 
@@ -26,16 +34,28 @@ class MovieListPresenter (val view: MovieListContract.View): MovieListContract.P
                 movies = response.body()
                 if (movies != null) {
                     Paper.book().write("MovieList", movies)
-                    view.hideLoading()
+                    if (!neverRefresh){
+                        view.hideRefreshLoading()
+                    } else {
+                        view.hideLoading()
+                    }
                     view.showList(movies!!)
                 } else {
                     movies = Paper.book().read("MovieList")
                     if (movies != null){
                         view.showMessage("Falha ao carregar. Os dados podem estar desatualizados.")
-                        view.hideLoading()
+                        if (!neverRefresh){
+                            view.hideRefreshLoading()
+                        } else {
+                            view.hideLoading()
+                        }
                         view.showList(movies!!)
                     } else {
-                        view.hideLoading()
+                        if (!neverRefresh){
+                            view.hideRefreshLoading()
+                        } else {
+                            view.hideLoading()
+                        }
                         view.showMessage("Falha ao carregar.")
                     }
                 }
@@ -48,10 +68,18 @@ class MovieListPresenter (val view: MovieListContract.View): MovieListContract.P
                 movies = Paper.book().read("MovieList")
                 if (movies != null){
                     view.showMessage("Falha ao carregar. Os dados podem estar desatualizados.")
-                    view.hideLoading()
+                    if (!neverRefresh){
+                        view.hideRefreshLoading()
+                    } else {
+                        view.hideLoading()
+                    }
                     view.showList(movies!!)
                 } else {
-                    view.hideLoading()
+                    if (!neverRefresh){
+                        view.hideRefreshLoading()
+                    } else {
+                        view.hideLoading()
+                    }
                     view.showMessage("Falha ao carregar. Verifique a conexão")
                 }
             }

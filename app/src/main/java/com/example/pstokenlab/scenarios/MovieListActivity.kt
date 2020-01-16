@@ -20,7 +20,8 @@ class MovieListActivity: AppCompatActivity (), MovieListContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_list)
 
-        presenter.onLoadList(this)
+        presenter.onLoadList(this, false)
+        refreshList()
 
     }
 
@@ -50,6 +51,17 @@ class MovieListActivity: AppCompatActivity (), MovieListContract.View {
     override fun hideLoading() {
         pb_loading.visibility = ProgressBar.INVISIBLE
     }
+
+    override fun refreshList(){
+        swipeRefreshLayout.setOnRefreshListener {
+            presenter.onLoadList(this, true)
+        }
+    }
+
+    override fun hideRefreshLoading(){
+        swipeRefreshLayout.isRefreshing = false
+    }
+
 }
 
 
